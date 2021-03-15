@@ -24,6 +24,7 @@ int main()
     return -1;
   }
 
+  // Start to listen...
   if (listen(xSocket, 1) == -1)
   {
     printf("Listening error...\n");
@@ -36,6 +37,25 @@ int main()
 
   printf("Connection done. Receiving text.\n");
 
+  // Listening loop
+  char buffer[1024];
+  int length;
+  do
+  {
+    // Received
+    length = recv(xSocket, buffer, 1023, 0);
+
+    // Check message
+    if (length > 0)
+    {
+      // Specified the end of the buffer
+      buffer[length] = '\0';
+      printf("Received text: %s\n", buffer);
+    }
+  }
+  while (length > 0 && strcmp(buffer, "exit\n") != 0);
+
+  closesocket(xSocket);
 
   return 0;
 }
