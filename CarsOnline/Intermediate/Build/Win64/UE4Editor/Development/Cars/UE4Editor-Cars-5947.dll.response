@@ -1,0 +1,99 @@
+/MANIFEST:EMBED
+/MANIFESTINPUT:"C:\Program Files\Epic Games\UE_4.26\Engine\Build\Windows\Resources\Default-Win64.manifest"
+/NOLOGO
+/DEBUG
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/FIXED:No
+/NXCOMPAT
+/STACK:12000000
+/DELAY:UNLOAD
+/DLL
+/PDBALTPATH:%_PDB%
+/OPT:NOREF
+/OPT:NOICF
+/INCREMENTAL:NO
+/ignore:4199
+/ignore:4099
+/DELAYLOAD:"d3d12.dll"
+/DELAYLOAD:"DBGHELP.DLL"
+/LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\lib\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.18362.0\ucrt\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.18362.0\um\x64"
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+/FUNCTIONPADMIN
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\CarsEditor\Development\Engine\SharedPCH.Engine.NoUndef.h.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Car.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarMovementComponent.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarsPlayerController.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CheckPoint.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\FinishLine.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\GameCamera.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\buffer.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\clientENet.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\connectionENet.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Manager.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\packet.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\serializable.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\serverENet.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Main.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\ServerCars.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Cars.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarsGameInstance.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarsGameModeBase.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Car.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarMovementComponent.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Cars.init.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarsGameInstance.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarsGameModeBase.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CarsPlayerController.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\CheckPoint.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\FinishLine.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\GameCamera.gen.cpp.obj"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\Default.rc2.res"
+"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\ThirdParty\enet\lib\enet.x64.lib"
+"C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\UE4Editor-Engine.lib"
+"C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Development\Core\UE4Editor-Core.lib"
+"C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Development\CoreUObject\UE4Editor-CoreUObject.lib"
+"C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Development\InputCore\UE4Editor-InputCore.lib"
+"C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Development\UMG\UE4Editor-UMG.lib"
+"delayimp.lib"
+"wininet.lib"
+"rpcrt4.lib"
+"ws2_32.lib"
+"dbghelp.lib"
+"comctl32.lib"
+"Winmm.lib"
+"kernel32.lib"
+"user32.lib"
+"gdi32.lib"
+"winspool.lib"
+"comdlg32.lib"
+"advapi32.lib"
+"shell32.lib"
+"ole32.lib"
+"oleaut32.lib"
+"uuid.lib"
+"odbc32.lib"
+"odbccp32.lib"
+"netapi32.lib"
+"iphlpapi.lib"
+"setupapi.lib"
+"dwmapi.lib"
+"imm32.lib"
+/OUT:"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Binaries\Win64\UE4Editor-Cars-5947.dll"
+/IMPLIB:"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Development\Cars\UE4Editor-Cars-5947.suppressed.lib"
+/PDB:"F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Binaries\Win64\UE4Editor-Cars-5947.pdb"
+/ignore:4078
+/INCLUDE:IMPLEMENT_MODULE_Cars

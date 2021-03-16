@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Cars",
+			"Path": "F:\\01_UTAD\\Asignaturas\\ProgramacionEnRed\\Practicas\\NetworkProgramming\\CarsOnline\\Source\\Cars.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "CarsEditor",
+			"Path": "F:\\01_UTAD\\Asignaturas\\ProgramacionEnRed\\Practicas\\NetworkProgramming\\CarsOnline\\Source\\CarsEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

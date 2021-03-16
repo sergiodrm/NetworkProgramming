@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Cars.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{6DD55BA5-F097-4A32-9FEF-4B8A1BC38366}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Cars.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\CarsEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{DE47AEA4-EEF6-4EC3-AF91-C64CD3B259EF}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Cars">
+      <UniqueIdentifier>{1957FFF7-7FB2-4DC9-BC13-921B0D74A11D}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Cars\Cars.Build.cs">
+      <Filter>Source\Cars</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Cars\Cars.cpp">
+      <Filter>Source\Cars</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Cars.h">
+      <Filter>Source\Cars</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\CarsGameInstance.cpp">
+      <Filter>Source\Cars</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\CarsGameInstance.h">
+      <Filter>Source\Cars</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\CarsGameModeBase.cpp">
+      <Filter>Source\Cars</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\CarsGameModeBase.h">
+      <Filter>Source\Cars</Filter>
+    </ClInclude>
+    <Filter Include="Source\Cars\Game">
+      <UniqueIdentifier>{A72A9D51-C8B5-45F7-A036-D74DBE0349D5}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Cars\Game\Car.cpp">
+      <Filter>Source\Cars\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Game\Car.h">
+      <Filter>Source\Cars\Game</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Game\CarMovementComponent.cpp">
+      <Filter>Source\Cars\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Game\CarMovementComponent.h">
+      <Filter>Source\Cars\Game</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Game\CarsPlayerController.cpp">
+      <Filter>Source\Cars\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Game\CarsPlayerController.h">
+      <Filter>Source\Cars\Game</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Game\CheckPoint.cpp">
+      <Filter>Source\Cars\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Game\CheckPoint.h">
+      <Filter>Source\Cars\Game</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Game\FinishLine.cpp">
+      <Filter>Source\Cars\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Game\FinishLine.h">
+      <Filter>Source\Cars\Game</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Game\GameCamera.cpp">
+      <Filter>Source\Cars\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Game\GameCamera.h">
+      <Filter>Source\Cars\Game</Filter>
+    </ClInclude>
+    <Filter Include="Source\Cars\Net">
+      <UniqueIdentifier>{C99F78B1-66BF-46F7-BAC2-0EEE365C0C06}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Cars\Net\buffer.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\buffer.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Cars\Net\client.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Net\clientENet.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\clientENet.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Cars\Net\connection.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Net\connectionENet.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\connectionENet.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Cars\Net\factory.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Cars\Net\factoryenet.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Net\Manager.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\Manager.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Net\packet.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\packet.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Net\serializable.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\serializable.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Cars\Net\server.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Cars\Net\serverENet.cpp">
+      <Filter>Source\Cars\Net</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Net\serverENet.h">
+      <Filter>Source\Cars\Net</Filter>
+    </ClInclude>
+    <Filter Include="Source\Cars\Server">
+      <UniqueIdentifier>{B13C6D0A-BB01-4C66-B547-DEE3CC736E05}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Cars\Server\Main.cpp">
+      <Filter>Source\Cars\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Cars\Server\ServerCars.cpp">
+      <Filter>Source\Cars\Server</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Cars\Server\ServerCars.h">
+      <Filter>Source\Cars\Server</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
