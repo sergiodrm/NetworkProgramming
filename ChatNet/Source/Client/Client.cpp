@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include <map>
+
 #include "Net/factoryenet.h"
 #include "Net/buffer.h"
 
@@ -17,6 +19,7 @@ namespace
   };
 
   Net::NetID s_clientID = 0;
+  std::map<Net::NetID, char*> s_idNames;
 }
 
 int main()
@@ -51,6 +54,7 @@ int main()
           // Read received data
           Net::CBuffer data;
           data.write(packet->getData(), packet->getDataLength());
+          data.reset();
 
           // Check data
           EMessageType eType;
@@ -70,7 +74,7 @@ int main()
 
   // We have an ID, but we need a nick to the client user
 
-  printf("Write a nick: ");
+  printf("Write your nick: ");
   fgets(msg, 1023, stdin);
   char* endLine = strchr(msg, '\n');
   *endLine = '\0';
@@ -82,7 +86,7 @@ int main()
   Net::CPacket packet(Net::EPacketType::DATA, data.getData(), data.getSize(), pConnection, 0);
   pClient->sendData(pConnection, packet.getData(), packet.getDataLength(), 0, true);
 
-  printf("Client id sent to server: #%d: %s\n", s_clientID, msg);
+  printf("Client id sent to server: [#%d] %s\n", s_clientID, msg);
 
 
   // Client loop
@@ -105,9 +109,36 @@ int main()
           Net::CBuffer data;
           data.write(packet->getData(), packet->getDataLength());
           data.reset();
-          size_t length = data.getSize();
+          // Read message type
+          EMessageType eMessageType;
+          data.read(&eMessageType, sizeof(eMessageType));
+          // Read client id
+          Net::NetID clientIDMessage;
+          data.read(&clientIDMessage, sizeof(clientIDMessage));
+
+          // Read the rest of the message
+          size_t length = data.getSize() - sizeof(eMessageType) - sizeof(clientIDMessage);
           data.read(msg, length);
           msg[length] = '\0';
+
+          switch (eMessageType)
+          {
+          case EMessageType::Message:
+            {
+              printf("[Client %d:%s] Received text: %s\n", clientIDMessage, s_idNames[clientIDMessage], msg);
+            }
+            break;
+          case EMessageType::SetName:
+            {
+              printf("[Client %d] Change name to %s\n", clientIDMessage, msg);
+              size_t copySize = strlen(msg) + 1;
+              s_idNames[clientIDMessage] = new char[copySize];
+              strcpy_s(s_idNames[clientIDMessage], copySize, msg);
+            }
+            break;
+          default: break;
+          }
+
           printf("Message from server: %s\n", msg);
         }
         break;
@@ -119,6 +150,8 @@ int main()
       default: break;
       }
     }
+    // Clear packets
+    packets.clear();
 
     // Send client data
 
@@ -132,6 +165,9 @@ int main()
     if (strcmp(msg, "exit") != 0)
     {
       Net::CBuffer data;
+      eMessageType = EMessageType::Message;
+      data.write(&eMessageType, sizeof(eMessageType));
+      data.write(&s_clientID, sizeof(s_clientID));
       data.write(msg, strlen(msg));
       Net::CPacket messagePacket(Net::EPacketType::DATA, data.getData(), data.getSize(), pConnection, 0);
       pClient->sendData(pConnection, messagePacket.getData(), messagePacket.getDataLength(), 0, true);

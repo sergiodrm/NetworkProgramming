@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include <map>
+
 
 #include "Net/buffer.h"
 #include "Net/factoryenet.h"
@@ -18,6 +20,8 @@ namespace
   };
 
   Net::NetID s_NextID = 0;
+
+  std::map<Net::NetID, char*> s_idNames;
 }
 
 int main()
@@ -78,11 +82,26 @@ int main()
           {
           case EMessageType::Message:
             {
-              printf("[Client %d] Received text: %s\n", clientID, msg);
+              printf("[Client %d:%s] Received text: %s\n", clientID, s_idNames[clientID], msg);
             }
             break;
           case EMessageType::SetName:
-            { }
+            {
+              // Resend all the clients to the new client to tell it the names
+              for (auto& client : s_idNames)
+              {
+                Net::CBuffer data;
+                EMessageType type = EMessageType::SetName;
+                data.write(&type, sizeof(type));
+                data.write(&client.first, sizeof(client.first));
+                data.write(client.second, strlen(client.second));
+                pServer->sendData(pPacket->getConnection(), data.getData(), data.getSize(), 0, true);
+              }
+              printf("[Client %d] Change name to %s\n", clientID, msg);
+              size_t copySize = strlen(msg) + 1;
+              s_idNames[clientID] = new char[copySize];
+              strcpy_s(s_idNames[clientID], copySize, msg);
+            }
             break;
           default: break;
           }
