@@ -16,72 +16,80 @@
 #define __BUFFER_H
 
 
-namespace Net {
+namespace Net
+{
+    typedef unsigned char byte;
 
-typedef unsigned char byte;
-
-/**
- * Implementa un buffer dinámico que los objetos utilizan para serializarse o deserializarse
- */
-class CBuffer{
-public:
-
-	/**
-	 * Crea un buffer dinámico.
-	 * @param initsize Tamaño inicial del buffer
-	 * @param delta Indica cuanto crecerá el buffer cada vez que se necesite ampliarlo
+    /**
+     * Implementa un buffer dinámico que los objetos utilizan para serializarse o deserializarse
      */
-	CBuffer(size_t initsize=500, size_t delta=100);
+    class CBuffer
+    {
+    public:
 
-	/**
-	 * Destructora
-	 */
-	virtual ~CBuffer();
+        /**
+         * Crea un buffer dinámico.
+         * @param initsize Tamaño inicial del buffer
+         * @param delta Indica cuanto crecerá el buffer cada vez que se necesite ampliarlo
+         */
+        CBuffer(size_t initsize = 500, size_t delta = 100);
 
-	/**
-	 * Devuelve el buffer como una secuencia de bytes
-	 */
-	byte* getData();
+        /**
+         * Destructora
+         */
+        virtual ~CBuffer();
 
-	/**
-	 * Devuelve el tamaño del buffer. 
-	 * Se utilizará normalmente para saber cuantos bytes devuelve getbuffer()
-	 */
-	size_t getSize();
+        /**
+         * Devuelve el buffer como una secuencia de bytes
+         */
+        byte* getData();
 
-	/**
-	 * Reinicia el buffer.
-	 * No modifica su tamaño actual
-	 */
-	void reset();
+        /**
+         * Devuelve el tamaño del buffer. 
+         * Se utilizará normalmente para saber cuantos bytes devuelve getbuffer()
+         */
+        size_t getSize();
 
-	/**
-	 * Escribe datos en el buffer
-	 * @param data son los datos a escribir
-	 * @param datalenght es el tamaño de los datos a escribir (número de bytes)
-	 */
-	void write(const void* data, size_t datalength);
+        /**
+         * Reinicia el buffer.
+         * No modifica su tamaño actual
+         */
+        void reset();
 
-	/**
-	 * Lee datos del buffer.
-	 * Al hacer esto el buffer se "vacia"
-	 * \param data es un puntero indicando a donde se deben copiar los datos desde el buffer
-	 * \param datalength es el número de datos (bytes) a leer
-	 */
-  void read(void* data, size_t datalength);
+        /**
+         * Escribe datos en el buffer
+         * @param data son los datos a escribir
+         * @param datalenght es el tamaño de los datos a escribir (número de bytes)
+         */
+        void write(const void* data, size_t datalength);
+
+        template <typename T>
+        void write(const T& data) { write(&data, sizeof(data)); }
+
+        template <typename T>
+        void read(T& data) { read(&data, sizeof(data)); }
+
+        void write(const char* data);
+        void read(char* data);
+
+        /**
+         * Lee datos del buffer.
+         * Al hacer esto el buffer se "vacia"
+         * \param data es un puntero indicando a donde se deben copiar los datos desde el buffer
+         * \param datalength es el número de datos (bytes) a leer
+         */
+        void read(void* data, size_t datalength);
 
 
-protected:
-	void realloc();
+    protected:
+        void realloc();
 
-	byte* _begin;
-	byte* _current;
-	size_t _maxsize;
-	size_t _size;
-	size_t _delta;
-
-};
-
+        byte* _begin;
+        byte* _current;
+        size_t _maxsize;
+        size_t _size;
+        size_t _delta;
+    };
 } // namespace Net
 
 #endif // _CBUFFER_H
