@@ -10,44 +10,42 @@
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CARS_API UCarMovementComponent : public UActorComponent
 {
-  GENERATED_BODY()
+	GENERATED_BODY()
 
-public:
-  // Sets default values for this component's properties
-  UCarMovementComponent();
+public:	
+	// Sets default values for this component's properties
+	UCarMovementComponent();
 
-protected:
-  // Called when the game starts
-  virtual void BeginPlay() override;
-
-public:
-
-
-  // Called every frame
-  virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-                             FActorComponentTickFunction* ThisTickFunction) override;
-
-  void SetInput(const FVector2D& _input) { m_movementInput = _input; }
-  float GetVelocityMagnitude() const { return m_velocity.Size(); }
-  FVector CalculateAcceleration() const;
-  FVector CalculateAverageVelocity(const FVector& _acceleration, float _deltaTime);
-  void ClampVelocity(FVector& _velocity_) const;
-  void MoveActor(const FVector _averageVelocity, float _deltaTime);
+	float GetVelocityMagnitude() { return m_vVelocity.Size(); }
+	void SetInput(FVector2D _vInput) { m_vMovementInput = _vInput; }
 
 protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
 
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  float m_acceleration;
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  float m_rotationFactor;
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  float m_brake;
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  float m_drag;
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  float m_maxVelocity;
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  FVector2D m_movementInput;
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  FVector m_velocity;
+public:	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	FVector CalculateAcceleration() const;
+	FVector CalculateAverageVelocity(const FVector& _vAccel, float DeltaTime);
+	void ClampVelocity(FVector& _vVelocity) const;
+	void MoveActor(const FVector& _vVelocity, float DeltaTime);
+
+protected:
+	UPROPERTY(EditAnywhere)
+		float m_fAccel = 120.f;
+	UPROPERTY(EditAnywhere)
+		float m_fDrag = 50.f;
+	UPROPERTY(EditAnywhere)
+		float m_fBrake = 300.f;
+	UPROPERTY(EditAnywhere)
+		float m_fRotationFactor = 2.f;
+	UPROPERTY(EditAnywhere)
+		float m_fMaxVelocity = 250.f;
+	//
+	FVector m_vVelocity = FVector::ZeroVector;
+	//
+	FVector2D m_vMovementInput = FVector2D::ZeroVector;
+
+		
 };

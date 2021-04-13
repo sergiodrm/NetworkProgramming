@@ -97,10 +97,10 @@ namespace Net {
 	{
 		if(!_connections.empty())
 		{
-      if (_server)
-        _server->sendAll(data->getData(), data->getSize(), 0, reliable);
+			if (_server)
+			  _server->sendAll(data->getData(), data->getSize(), 0, reliable);
 			if(_client)
-				_client->sendData(getConnection(Net::ID::SERVER), data->getData(), data->getSize(), 0, reliable);
+			  _client->sendData(getConnection(Net::ID::SERVER), data->getData(), data->getSize(), 0, reliable);
 		}
 	} // send
 

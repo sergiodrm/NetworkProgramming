@@ -2,25 +2,26 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Net/buffer.h"
+#include "Math/Vector.h"
+#include "Math/Transform.h"
 
-#include "Cars/Net/buffer.h"
 
-
+/**
+ * 
+ */
 class CGameBuffer : public Net::CBuffer
 {
 public:
+	CGameBuffer(size_t initsize = 500, size_t delta = 100);
+	virtual ~CGameBuffer();
 
-    CGameBuffer(size_t initSize = 500, size_t delta = 500);
-    ~CGameBuffer();
-
-    using CBuffer::write;
-    using CBuffer::read;
-
-    void write(const FVector& data);
-    void read(FVector& data);
-    void write(const FVector2D& data);
-    void read(FVector2D& data);
-    void write(const FTransform& data);
-    void read(FTransform& data);
+	using Net::CBuffer::write;
+	using Net::CBuffer::read;
+	void write(const FVector& _data);
+	void read(FVector& data_);
+	void write(const FVector2D& _data);
+	void read(FVector2D& data_);
+	void write(const FTransform& _data);
+	void read(FTransform& data_);
 };

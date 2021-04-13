@@ -12,10 +12,12 @@
 UCLASS()
 class CARS_API ACarsGameModeBase : public AGameModeBase
 {
-    GENERATED_BODY()
+  GENERATED_BODY()
 public:
-    ACarsGameModeBase(const class FObjectInitializer& ObjectInitializer);
-    virtual APawn* SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot) override;
+  ACarsGameModeBase(const class FObjectInitializer& ObjectInitializer);
+  virtual APawn* SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot) override;
 
-    virtual void Tick(float DeltaSeconds) override;
+  virtual void Tick(float DeltaSeconds) override;
+	
+	
 };

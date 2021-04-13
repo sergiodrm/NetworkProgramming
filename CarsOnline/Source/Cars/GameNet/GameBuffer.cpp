@@ -1,55 +1,62 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
 #include "GameBuffer.h"
 
-
-CGameBuffer::CGameBuffer(size_t initSize, size_t delta)
-    : CBuffer(initSize, delta)
-{}
-
-CGameBuffer::~CGameBuffer() {}
-
-void CGameBuffer::write(const FVector& data)
+CGameBuffer::CGameBuffer(size_t initsize, size_t delta)
+	: Net::CBuffer(initsize, delta)
 {
-    write(data.X);
-    write(data.Y);
-    write(data.Z);
+
 }
 
-void CGameBuffer::read(FVector& data)
+CGameBuffer::~CGameBuffer()
 {
-    read(data.X);
-    read(data.Y);
-    read(data.Z);
+
 }
 
-void CGameBuffer::write(const FVector2D& data)
+void CGameBuffer::write(const FVector& _data)
 {
-    write(data.X);
-    write(data.Y);
+	write(_data.X);
+	write(_data.Y);
+	write(_data.Z);
 }
 
-void CGameBuffer::read(FVector2D& data)
+void CGameBuffer::read(FVector& data_)
 {
-    read(data.X);
-    read(data.Y);
+	read(data_.X);
+	read(data_.Y);
+	read(data_.Z);
 }
 
-void CGameBuffer::write(const FTransform& data)
+void CGameBuffer::write(const FVector2D& _data)
 {
-    write(data.GetTranslation());
-    write(data.GetRotation().GetAxisX());
-    write(data.GetScale3D());
+	write(_data.X);
+	write(_data.Y);
 }
 
-void CGameBuffer::read(FTransform& data)
+void CGameBuffer::read(FVector2D& data_)
 {
-    FVector position, rotation;
-    read(position);
-    read(rotation);
-    data.SetTranslation(position);
-    data.SetRotation(FRotationMatrix::MakeFromX(rotation).ToQuat());
-    FVector scale;
-    read(scale);
-    data.SetScale3D(scale);
+	read(data_.X);
+	read(data_.Y);
+}
+
+void CGameBuffer::write(const FTransform& _data)
+{
+	write(_data.GetTranslation());
+	write(_data.GetRotation().GetAxisX());
+	write(_data.GetScale3D());
+}
+
+void CGameBuffer::read(FTransform& data_)
+{
+	FVector vPos;
+	read(vPos);
+	FVector vDir;
+	read(vDir);
+	FMatrix tMatrix = FRotationMatrix::MakeFromX(vDir);
+	data_.SetFromMatrix(tMatrix);
+	data_.SetTranslation(vPos);
+	FVector vScale;
+	read(vScale);
+	data_.SetScale3D(vScale);
 }

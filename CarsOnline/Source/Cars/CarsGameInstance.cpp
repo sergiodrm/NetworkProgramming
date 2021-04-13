@@ -3,77 +3,62 @@
 
 #include "CarsGameInstance.h"
 #include "Blueprint/UserWidget.h"
+#include "Net/Manager.h"
 #include "GameNet/GameBuffer.h"
 #include "Kismet/GameplayStatics.h"
 
-void UCarsGameInstance::OnStart()
+UCarsGameInstance::UCarsGameInstance(const FObjectInitializer& OI)
+	: Super(OI)
+	, m_oGameNetMgr(this)
 {
-    Super::OnStart();
-    ChangeMenuWidget(StartingWidgetClass);
+	m_pManager = Net::CManager::getSingletonPtr();
 }
 
-UCarsGameInstance::UCarsGameInstance(const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
-      , GameNetManager(this)
-      , NetManager(nullptr)
+void UCarsGameInstance::OnStart()
 {
-    NetManager = Net::CManager::getSingletonPtr();
+  Super::OnStart();
+  ChangeMenuWidget(StartingWidgetClass);
 }
 
 void UCarsGameInstance::ChangeMenuWidget(TSubclassOf<UUserWidget> NewWidgetClass)
 {
+  if (CurrentWidget != nullptr)
+  {
+    CurrentWidget->RemoveFromViewport();
+    CurrentWidget = nullptr;
+  }
+  if (NewWidgetClass != nullptr)
+  {
+    CurrentWidget = CreateWidget<UUserWidget>(this, NewWidgetClass);
     if (CurrentWidget != nullptr)
     {
-        CurrentWidget->RemoveFromViewport();
-        CurrentWidget = nullptr;
+      CurrentWidget->AddToViewport();
     }
-    if (NewWidgetClass != nullptr)
-    {
-        CurrentWidget = CreateWidget<UUserWidget>(this, NewWidgetClass);
-        if (CurrentWidget != nullptr)
-        {
-            CurrentWidget->AddToViewport();
-        }
-    }
+  }
 }
 
 void UCarsGameInstance::OnServerButtonClick(FString sPort)
 {
-    int port = FCString::Atoi(*sPort);
-    NetManager->activateAsServer(port);
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Server initialization successfuly"));
-    }
+	int iPort(FCString::Atoi(*sPort));
+	m_pManager->activateAsServer(iPort);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, *FString("Server"));
 }
 
 void UCarsGameInstance::OnClientButtonClick(FString sIP, FString sPort)
 {
-    int port = FCString::Atoi(*sPort);
-    NetManager->activateAsClient();
-    NetManager->connectTo(TCHAR_TO_ANSI(*sIP), port);
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Client initialization successfuly"));
-    }
+	int iPort(FCString::Atoi(*sPort));
+	m_pManager->activateAsClient();
+	m_pManager->connectTo(TCHAR_TO_ANSI(*sIP), iPort);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, *FString("Client"));
 }
 
 void UCarsGameInstance::OnServerStartButtonClick()
 {
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, TEXT("Server starts!!!"));
-    }
-
-    // Load game level
-    const char* Level = "circuit1";
-    UGameplayStatics::OpenLevel(GetWorld(), Level);
-
-    // Make start game notification for the clients
-    CGameBuffer DataBuffer;
-    DataBuffer.write(Net::NetMessageType::LOAD_MAP);
-    DataBuffer.write(Level);
-
-    // Send notification
-    NetManager->send(&DataBuffer, true);
+	const char* level = "circuit1";
+	UGameplayStatics::OpenLevel(GetWorld(), level);
+	CGameBuffer oData;
+	oData.write(Net::NetMessageType::LOAD_MAP);
+	oData.write(level);
+	m_pManager->send(&oData, true);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, *FString("Server Start!"));
 }
