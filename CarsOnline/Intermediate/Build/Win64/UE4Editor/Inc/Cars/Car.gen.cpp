@@ -19,6 +19,7 @@ void EmptyLinkFunctionForGeneratedCodeCar() {}
 	UPackage* Z_Construct_UPackage__Script_Cars();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	CARS_API UClass* Z_Construct_UClass_UCarMovementComponent_NoRegister();
+	CARS_API UClass* Z_Construct_UClass_UNetComponent_NoRegister();
 // End Cross Module References
 	void ACar::StaticRegisterNativesACar()
 	{
@@ -41,6 +42,10 @@ void EmptyLinkFunctionForGeneratedCodeCar() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_carMovementComponent_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_m_carMovementComponent;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NetComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_NetComponent;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -74,9 +79,18 @@ void EmptyLinkFunctionForGeneratedCodeCar() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACar_Statics::NewProp_m_carMovementComponent = { "m_carMovementComponent", nullptr, (EPropertyFlags)0x0020080000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACar, m_carMovementComponent), Z_Construct_UClass_UCarMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACar_Statics::NewProp_m_carMovementComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACar_Statics::NewProp_m_carMovementComponent_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACar_Statics::NewProp_NetComponent_MetaData[] = {
+		{ "Category", "Car" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Game/Car.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACar_Statics::NewProp_NetComponent = { "NetComponent", nullptr, (EPropertyFlags)0x0020080000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACar, NetComponent), Z_Construct_UClass_UNetComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACar_Statics::NewProp_NetComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACar_Statics::NewProp_NetComponent_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACar_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACar_Statics::NewProp_m_pMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACar_Statics::NewProp_m_carMovementComponent,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACar_Statics::NewProp_NetComponent,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACar_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACar>::IsAbstract,
@@ -105,7 +119,7 @@ void EmptyLinkFunctionForGeneratedCodeCar() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACar, 1755963829);
+	IMPLEMENT_CLASS(ACar, 1631887823);
 	template<> CARS_API UClass* StaticClass<ACar>()
 	{
 		return ACar::StaticClass();

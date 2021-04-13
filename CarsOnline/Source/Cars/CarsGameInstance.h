@@ -6,7 +6,6 @@
 #include "Engine/GameInstance.h"
 #include "Net/Manager.h"
 #include "GameNet/GameNetManager.h"
-
 #include "CarsGameInstance.generated.h"
 
 namespace Net
@@ -35,6 +34,8 @@ public:
     void OnClientButtonClick(FString sIP, FString sPort);
     UFUNCTION(BlueprintCallable, Category = CarsNet)
     void OnServerStartButtonClick();
+
+    const CGameNetManager* GetGameNetManager() const { return &GameNetManager; }
 
 
 protected:

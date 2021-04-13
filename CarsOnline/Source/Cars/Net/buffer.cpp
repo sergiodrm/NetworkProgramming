@@ -59,6 +59,7 @@ namespace Net
     void CBuffer::write(const char* data)
     {
         size_t size = strlen(data);
+        write(size);
         write(data, size);
     }
 

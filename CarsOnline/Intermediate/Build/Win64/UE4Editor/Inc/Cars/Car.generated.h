@@ -60,7 +60,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ACar); \
 
 #define CarsOnline_Source_Cars_Game_Car_h_12_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__m_pMesh() { return STRUCT_OFFSET(ACar, m_pMesh); } \
-	FORCEINLINE static uint32 __PPO__m_carMovementComponent() { return STRUCT_OFFSET(ACar, m_carMovementComponent); }
+	FORCEINLINE static uint32 __PPO__m_carMovementComponent() { return STRUCT_OFFSET(ACar, m_carMovementComponent); } \
+	FORCEINLINE static uint32 __PPO__NetComponent() { return STRUCT_OFFSET(ACar, NetComponent); }
 
 
 #define CarsOnline_Source_Cars_Game_Car_h_9_PROLOG

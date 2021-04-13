@@ -227,6 +227,7 @@ void EmptyLinkFunctionForGeneratedCodeCarsGameInstance() {}
 		{ "Comment", "/**\n *\n */" },
 		{ "IncludePath", "CarsGameInstance.h" },
 		{ "ModuleRelativePath", "CarsGameInstance.h" },
+		{ "ObjectInitializerConstructorDeclared", "" },
 	};
 #endif
 #if WITH_METADATA
@@ -274,7 +275,7 @@ void EmptyLinkFunctionForGeneratedCodeCarsGameInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCarsGameInstance, 1442928494);
+	IMPLEMENT_CLASS(UCarsGameInstance, 1537806021);
 	template<> CARS_API UClass* StaticClass<UCarsGameInstance>()
 	{
 		return UCarsGameInstance::StaticClass();

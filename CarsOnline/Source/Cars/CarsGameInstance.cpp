@@ -71,7 +71,7 @@ void UCarsGameInstance::OnServerStartButtonClick()
 
     // Make start game notification for the clients
     CGameBuffer DataBuffer;
-    DataBuffer.write(Net::NetMessageType::START_GAME);
+    DataBuffer.write(Net::NetMessageType::LOAD_MAP);
     DataBuffer.write(Level);
 
     // Send notification

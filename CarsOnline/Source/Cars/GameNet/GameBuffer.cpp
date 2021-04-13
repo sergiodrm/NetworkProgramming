@@ -34,3 +34,22 @@ void CGameBuffer::read(FVector2D& data)
     read(data.X);
     read(data.Y);
 }
+
+void CGameBuffer::write(const FTransform& data)
+{
+    write(data.GetTranslation());
+    write(data.GetRotation().GetAxisX());
+    write(data.GetScale3D());
+}
+
+void CGameBuffer::read(FTransform& data)
+{
+    FVector position, rotation;
+    read(position);
+    read(rotation);
+    data.SetTranslation(position);
+    data.SetRotation(FRotationMatrix::MakeFromX(rotation).ToQuat());
+    FVector scale;
+    read(scale);
+    data.SetScale3D(scale);
+}

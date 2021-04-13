@@ -21,4 +21,6 @@ public:
     void read(FVector& data);
     void write(const FVector2D& data);
     void read(FVector2D& data);
+    void write(const FTransform& data);
+    void read(FTransform& data);
 };

@@ -7,3 +7,5 @@ C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h
 F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Source\Cars\Game\CarMovementComponent.h
 F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Inc\Cars\CarMovementComponent.generated.h
+F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Source\Cars\GameNet/NetComponent.h
+F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Inc\Cars\NetComponent.generated.h

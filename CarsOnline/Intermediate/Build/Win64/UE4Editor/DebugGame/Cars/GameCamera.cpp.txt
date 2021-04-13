@@ -14,3 +14,5 @@ C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
 C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 C:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Source\Cars\Game\Car.h
+F:\01_UTAD\Asignaturas\ProgramacionEnRed\Practicas\NetworkProgramming\CarsOnline\Intermediate\Build\Win64\UE4Editor\Inc\Cars\Car.generated.h

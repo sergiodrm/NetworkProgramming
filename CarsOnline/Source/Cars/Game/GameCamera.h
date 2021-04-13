@@ -9,22 +9,25 @@
 UCLASS()
 class CARS_API AGameCamera : public ACameraActor
 {
-  GENERATED_BODY()
+    GENERATED_BODY()
 public:
-  // Sets default values for this actor's properties
-  AGameCamera();
-  // Called every frame
-  virtual void Tick(float DeltaTime) override;
-protected:
-  // Called when the game starts or when spawned
-  virtual void BeginPlay() override;
+    // Sets default values for this actor's properties
+    AGameCamera();
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
+
+    void SetTarget();
 
 protected:
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
-  class ACar* m_target;
+protected:
 
-  UPROPERTY(EditAnywhere)
-  float m_minDistance;
-  UPROPERTY(EditAnywhere)
-  float m_distanceFromVelocityFactor;
+    class ACar* m_target;
+
+    UPROPERTY(EditAnywhere)
+    float m_minDistance;
+    UPROPERTY(EditAnywhere)
+    float m_distanceFromVelocityFactor;
 };
