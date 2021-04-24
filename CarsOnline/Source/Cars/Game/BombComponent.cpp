@@ -3,6 +3,7 @@
 
 #include "BombComponent.h"
 #include "Bomb.h"
+#include "Car.h"
 
 UBombComponent::UBombComponent()
 {
@@ -23,8 +24,22 @@ bool UBombComponent::CanSpawnBomb() const { return SpawnedBomb == nullptr; }
 
 void UBombComponent::SpawnBomb()
 {
-    if (GEngine)
+    FActorSpawnParameters SpawnParameters;
+    SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    FVector position = GetOwner()->GetActorLocation();
+    FRotator rotator = GetOwner()->GetActorRotation();
+    FVector scale = GetOwner()->GetActorScale();
+    SpawnedBomb = GetWorld()->SpawnActor<ABomb>(ABomb::StaticClass(), position, rotator, SpawnParameters);
+    if (SpawnedBomb != nullptr)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Blue, TEXT("Spawning bomb"));
+        SpawnedBomb->SetActorScale3D(FVector(0.5f));
+        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Blue, TEXT("Bomb spawned correctly."));
+
+        // Configure bomb
+        SpawnedBomb->OwnerCar = Cast<ACar>(GetOwner());
+        if (!SpawnedBomb->OwnerCar->GetNetComponent()->IsMyCar())
+        {
+            SpawnedBomb->SetMaterialColor(FLinearColor::Red);
+        }
     }
 }

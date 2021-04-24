@@ -17,7 +17,6 @@ UNetComponent::UNetComponent()
     PrimaryComponentTick.bCanEverTick = true;
     m_pManager = Net::CManager::getSingletonPtr();
     OwnerCar = Cast<ACar>(GetOwner());
-    ensure(OwnerCar);
     // ...
 }
 
@@ -31,6 +30,17 @@ void UNetComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
         SerializeData();
     }
 }
+
+void UNetComponent::BeginPlay()
+{
+    Super::BeginPlay();
+
+    if (!OwnerCar)
+    {
+        OwnerCar = Cast<ACar>(GetOwner());
+    }
+}
+
 
 bool UNetComponent::IsMyCar() const
 {

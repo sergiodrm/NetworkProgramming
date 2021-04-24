@@ -25,6 +25,5 @@ protected:
 
 public:
 
-    TSubclassOf<ABomb> SpawnBombClass;
     ABomb* SpawnedBomb;
 };

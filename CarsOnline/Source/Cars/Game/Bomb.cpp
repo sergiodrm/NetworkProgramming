@@ -5,6 +5,7 @@
 #include "Components/SphereComponent.h"
 #include "GameNet/SlowDownNetComponent.h"
 #include "Game/Car.h"
+#include "Components/StaticMeshComponent.h"
 
 ABomb::ABomb()
 {
@@ -21,6 +22,8 @@ ABomb::ABomb()
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static mesh component"));
     const ConstructorHelpers::FObjectFinder<UStaticMesh> MeshObj(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
     StaticMeshComponent->SetStaticMesh(MeshObj.Object);
+    const ConstructorHelpers::FObjectFinder<UMaterial> MaterialObj(TEXT("Material'/Game/BombMaterial.BombMaterial'"));
+    StaticMeshComponent->SetMaterial(0, MaterialObj.Object);
 }
 
 void ABomb::OnActorBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -40,4 +43,10 @@ void ABomb::OnActorEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 void ABomb::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+}
+
+void ABomb::SetMaterialColor(const FLinearColor& color)
+{
+    UMaterialInstanceDynamic* MaterialInstance = StaticMeshComponent->CreateAndSetMaterialInstanceDynamic(0);
+    MaterialInstance->SetVectorParameterValue(FName(TEXT("BaseColor")), color);
 }
