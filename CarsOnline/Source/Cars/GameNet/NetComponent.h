@@ -3,42 +3,52 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include <memory>
+
+
+#include "GameNetMgr.h"
 #include "Components/ActorComponent.h"
 #include "GameNet/GameBuffer.h"
 #include "NetComponent.generated.h"
 
+class ACar;
+
 namespace Net
 {
-	class CManager;
+    class CManager;
 }
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CARS_API UNetComponent : public UActorComponent
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:	
-	// Sets default values for this component's properties
-	UNetComponent();
+public:
+    // Sets default values for this component's properties
+    UNetComponent();
 
-	void SetInput(FVector2D _vInput) { m_vMovementInput = _vInput; }
-	void DeserializeData(CGameBuffer& _rData);
+    // --- Actor component interface ---
+
+    /**
+     * @brief Called every frame
+    */
+    virtual void TickComponent(float DeltaTime, ELevelTick TickType,
+                               FActorComponentTickFunction* ThisTickFunction) override;
+
+    // --- Net functionality ---
+
+    bool IsMyCar() const;
+    bool IsServer() const;
+    virtual void DeserializeData(CGameBuffer& DataBuffer);
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 
-	void SerializeData();
-
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+    virtual void SerializeData();
+    std::unique_ptr<CGameBuffer> CreateEntityMessage(GameNet::EEntityMessageType type) const;
 
 
 protected:
-	//
-	FVector2D m_vMovementInput = FVector2D::ZeroVector;
-	Net::CManager* m_pManager = nullptr;
-
-		
+    Net::CManager* m_pManager = nullptr;
+    class ACar* OwnerCar;
 };

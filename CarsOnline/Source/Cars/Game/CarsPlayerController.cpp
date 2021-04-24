@@ -3,13 +3,15 @@
 #include "CarsPlayerController.h"
 
 
-ACarsPlayerController::ACarsPlayerController(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+ACarsPlayerController::ACarsPlayerController(const class FObjectInitializer& ObjectInitializer) : Super(
+    ObjectInitializer)
 {
-  bAutoManageActiveCameraTarget = false;
+    bAutoManageActiveCameraTarget = false;
 }
 
 void ACarsPlayerController::BeginPlay()
 {
-  Super::BeginPlay();
-  SetInputMode(FInputModeGameAndUI());
+    Super::BeginPlay();
+    SetInputMode(FInputModeGameAndUI());
+    bShowMouseCursor = true;
 }
