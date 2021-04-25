@@ -18,6 +18,7 @@ namespace GameNet
         Transform,
         Input,
         SpawnBomb,
+        DestroyBomb,
         Effect
     };
 }

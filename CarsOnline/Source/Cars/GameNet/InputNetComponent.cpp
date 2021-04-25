@@ -28,6 +28,11 @@ void UInputNetComponent::DeserializeData(CGameBuffer& DataBuffer)
                     GetOwner()->SetActorTransform(tTrans);
                 }
                 break;
+            case GameNet::DestroyBomb:
+                {
+                    DestroyBomb();
+                }
+                break;
         }
     }
     else
@@ -38,6 +43,10 @@ void UInputNetComponent::DeserializeData(CGameBuffer& DataBuffer)
             case GameNet::SpawnBomb:
                 {
                     SpawnBomb();
+                    // Init timer to destroy bomb
+                    FTimerHandle timer;
+                    GetWorld()->GetTimerManager().SetTimer(timer, this, &UInputNetComponent::DestroyBomb, 5.f, false,
+                                                           -1.f);
                     // Resend to all
                     m_pManager->send(&DataBuffer, true);
                 }
@@ -84,4 +93,17 @@ void UInputNetComponent::SerializeData()
 void UInputNetComponent::SpawnBomb()
 {
     OwnerCar->GetBombComponent()->TrySpawnBomb();
+}
+
+void UInputNetComponent::DestroyBomb()
+{
+    // Destroy bomb
+    OwnerCar->GetBombComponent()->DestroyBomb();
+
+    if (IsServer())
+    {
+        // Notify to clients they must delete the bomb locally
+        std::unique_ptr<CGameBuffer> data(CreateEntityMessage(GameNet::EEntityMessageType::DestroyBomb));
+        m_pManager->send(data.get(), true);
+    }
 }

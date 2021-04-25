@@ -20,10 +20,16 @@ ABomb::ABomb()
     SlowDownNetComponent = CreateDefaultSubobject<USlowDownNetComponent>(TEXT("Slow down net component"));
 
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static mesh component"));
+    StaticMeshComponent->SetupAttachment(RootComponent);
     const ConstructorHelpers::FObjectFinder<UStaticMesh> MeshObj(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
     StaticMeshComponent->SetStaticMesh(MeshObj.Object);
     const ConstructorHelpers::FObjectFinder<UMaterial> MaterialObj(TEXT("Material'/Game/BombMaterial.BombMaterial'"));
     StaticMeshComponent->SetMaterial(0, MaterialObj.Object);
+
+    StaticMeshComponent->SetRelativeLocation(FVector::ZeroVector);
+    StaticMeshComponent->SetRelativeScale3D(FVector(0.3f));
+    StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    StaticMeshComponent->SetCollisionProfileName("NoCollision");
 }
 
 void ABomb::OnActorBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,

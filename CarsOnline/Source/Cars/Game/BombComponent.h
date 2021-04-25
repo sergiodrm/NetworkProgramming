@@ -19,6 +19,7 @@ public:
 
     bool TrySpawnBomb();
     bool CanSpawnBomb() const;
+    void DestroyBomb();
 
 protected:
     void SpawnBomb();

@@ -29,6 +29,7 @@ public:
 protected:
     virtual void SerializeData() override;
     void SpawnBomb();
+    void DestroyBomb();
 
 
 protected:

@@ -33,7 +33,6 @@ void UBombComponent::SpawnBomb()
     if (SpawnedBomb != nullptr)
     {
         SpawnedBomb->SetActorScale3D(FVector(0.5f));
-        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Blue, TEXT("Bomb spawned correctly."));
 
         // Configure bomb
         SpawnedBomb->OwnerCar = Cast<ACar>(GetOwner());
@@ -41,5 +40,16 @@ void UBombComponent::SpawnBomb()
         {
             SpawnedBomb->SetMaterialColor(FLinearColor::Red);
         }
+    }
+}
+
+void UBombComponent::DestroyBomb()
+{
+    if (SpawnedBomb != nullptr)
+    {
+        GEngine->AddOnScreenDebugMessage(INDEX_NONE, 3.f, FColor::Red, TEXT("Destroying bomb"));
+
+        SpawnedBomb->Destroy();
+        SpawnedBomb = nullptr;
     }
 }
