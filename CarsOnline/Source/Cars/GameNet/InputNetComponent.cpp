@@ -3,9 +3,11 @@
 
 #include "InputNetComponent.h"
 #include "CarsGameInstance.h"
-#include "Game/BombComponent.h"
+#include "Game/BombSPawnerComponent.h"
 #include "Game/Car.h"
 #include "Game/CarMovementComponent.h"
+#include "Game/CarsPlayerController.h"
+#include "Game/CarUserWidget.h"
 
 void UInputNetComponent::DeserializeData(CGameBuffer& DataBuffer)
 {
@@ -26,6 +28,18 @@ void UInputNetComponent::DeserializeData(CGameBuffer& DataBuffer)
                     FTransform tTrans;
                     DataBuffer.read(tTrans);
                     GetOwner()->SetActorTransform(tTrans);
+                    float receivedVelocity;
+                    DataBuffer.read(receivedVelocity);
+
+                    if (IsMyCar())
+                    {
+                        ACarsPlayerController* playerController = Cast<ACarsPlayerController>(
+                            GetOwner()->GetWorld()->GetFirstPlayerController());
+                        if (playerController)
+                        {
+                            playerController->UIWidget->UpdateVelocity(receivedVelocity);
+                        }
+                    }
                 }
                 break;
             case GameNet::DestroyBomb:
@@ -74,12 +88,14 @@ void UInputNetComponent::OnAttack()
     }
 }
 
+
 void UInputNetComponent::SerializeData()
 {
     if (IsServer())
     {
         std::unique_ptr<CGameBuffer> data = CreateEntityMessage(GameNet::EEntityMessageType::Transform);
         data->write(GetOwner()->GetActorTransform());
+        data->write(OwnerCar->GetCarMovement()->GetVelocityMagnitude());
         m_pManager->send(data.get(), false);
     }
     else

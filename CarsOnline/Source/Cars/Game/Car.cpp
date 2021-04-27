@@ -6,7 +6,7 @@
 #include "ConstructorHelpers.h"
 #include "Components/InputComponent.h"
 #include "CarMovementComponent.h"
-#include "BombComponent.h"
+#include "BombSpawnerComponent.h"
 #include "GameNet/InputNetComponent.h"
 
 
@@ -31,7 +31,7 @@ ACar::ACar()
     SetActorScale3D(FVector(0.2f, 0.1f, 0.05f));
     SetActorRotation(FRotator(0.f, 270.f, 0.f));
 
-    m_pBombComponent = CreateDefaultSubobject<UBombComponent>(TEXT("Bomb component"));
+    m_pBombComponent = CreateDefaultSubobject<UBombSpawnerComponent>(TEXT("Bomb component"));
 
     AutoPossessAI = EAutoPossessAI::Disabled;
     bReplicates = false;

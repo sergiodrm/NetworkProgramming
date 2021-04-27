@@ -1,16 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "BombComponent.h"
+#include "BombSpawnerComponent.h"
 #include "Bomb.h"
 #include "Car.h"
 
-UBombComponent::UBombComponent()
+UBombSpawnerComponent::UBombSpawnerComponent()
 {
     PrimaryComponentTick.bCanEverTick = true;
 }
 
-bool UBombComponent::TrySpawnBomb()
+bool UBombSpawnerComponent::TrySpawnBomb()
 {
     if (CanSpawnBomb())
     {
@@ -20,16 +20,16 @@ bool UBombComponent::TrySpawnBomb()
     return false;
 }
 
-bool UBombComponent::CanSpawnBomb() const { return SpawnedBomb == nullptr; }
+bool UBombSpawnerComponent::CanSpawnBomb() const { return SpawnedBomb == nullptr; }
 
-void UBombComponent::SpawnBomb()
+void UBombSpawnerComponent::SpawnBomb()
 {
     FActorSpawnParameters SpawnParameters;
     SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-    FVector position = GetOwner()->GetActorLocation();
-    FRotator rotator = GetOwner()->GetActorRotation();
-    FVector scale = GetOwner()->GetActorScale();
-    SpawnedBomb = GetWorld()->SpawnActor<ABomb>(ABomb::StaticClass(), position, rotator, SpawnParameters);
+    FVector SpawnPosition = GetOwner()->GetActorLocation();
+    SpawnPosition.Z = 0.f;
+    FRotator SpawnRotator = GetOwner()->GetActorRotation();
+    SpawnedBomb = GetWorld()->SpawnActor<ABomb>(ABomb::StaticClass(), SpawnPosition, SpawnRotator, SpawnParameters);
     if (SpawnedBomb != nullptr)
     {
         SpawnedBomb->SetActorScale3D(FVector(0.5f));
@@ -38,12 +38,14 @@ void UBombComponent::SpawnBomb()
         SpawnedBomb->OwnerCar = Cast<ACar>(GetOwner());
         if (!SpawnedBomb->OwnerCar->GetNetComponent()->IsMyCar())
         {
-            SpawnedBomb->SetMaterialColor(FLinearColor::Red);
+            SpawnedBomb->SetMaterialColor(FLinearColor::Red, FLinearColor::Red);
         }
+        else
+            SpawnedBomb->SetMaterialColor(FLinearColor::Green, FLinearColor::Green);
     }
 }
 
-void UBombComponent::DestroyBomb()
+void UBombSpawnerComponent::DestroyBomb()
 {
     if (SpawnedBomb != nullptr)
     {

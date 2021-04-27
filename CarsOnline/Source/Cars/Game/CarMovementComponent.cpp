@@ -84,12 +84,19 @@ void UCarMovementComponent::MoveActor(const FVector& _vAverageVelocity, float De
 
 void UCarMovementComponent::SlowDownVelocity(float _slowDownFactor)
 {
-    m_fMaxVelocity *= _slowDownFactor;
+    if (m_fMaxVelocity == m_fMaxVelocityBackUp)
+    {
+        m_fMaxVelocity *= _slowDownFactor;
+        GEngine->AddOnScreenDebugMessage(INDEX_NONE, 3.f, FColor::Green,
+                                         FString::Printf(TEXT("SlowDownVelocity: %.3f"), m_fMaxVelocity));
+    }
 }
 
 void UCarMovementComponent::RestoreVelocity()
 {
     m_fMaxVelocity = m_fMaxVelocityBackUp;
+    GEngine->AddOnScreenDebugMessage(INDEX_NONE, 3.f, FColor::Green,
+                                     FString::Printf(TEXT("RestoreVelocity: %.3f"), m_fMaxVelocity));
 }
 
 

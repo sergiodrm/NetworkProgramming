@@ -26,6 +26,7 @@ public:
 
     FORCEINLINE void SetInput(const FVector2D& MovementInput) { m_vMovementInput = MovementInput; }
     void OnAttack();
+
 protected:
     virtual void SerializeData() override;
     void SpawnBomb();
@@ -35,5 +36,4 @@ protected:
 protected:
 
     FVector2D m_vMovementInput = FVector2D::ZeroVector;
-    bool m_bBombInput = false;
 };

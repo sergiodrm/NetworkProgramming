@@ -33,6 +33,7 @@ public:
     void MoveActor(const FVector& _vVelocity, float DeltaTime);
     void SlowDownVelocity(float _slowDownFactor);
     void RestoreVelocity();
+    float GetMaxVelocity() const { return m_fMaxVelocityBackUp; }
 
 protected:
     UPROPERTY(EditAnywhere)

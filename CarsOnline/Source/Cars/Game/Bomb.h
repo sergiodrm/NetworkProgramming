@@ -19,29 +19,33 @@ public:
 
     ABomb();
 
-    UFUNCTION()
-    void OnActorBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-                             UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
-                             const FHitResult& SweepResult);
-    UFUNCTION()
-    void OnActorEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-                           int32 OtherBodyIndex);
-
     virtual void Tick(float DeltaSeconds) override;
 
-    void SetMaterialColor(const FLinearColor& color);
+    void SetMaterialColor(const FLinearColor& BaseColor, const FLinearColor& EmissiveColor);
+
+protected:
+
+    virtual void BeginDestroy() override;
 
 public:
 
     ACar* OwnerCar;
 
     UPROPERTY(VisibleAnywhere)
-    class USphereComponent* SphereComponent;
-    UPROPERTY(VisibleAnywhere)
-    class USlowDownNetComponent* SlowDownNetComponent;
+    class USceneComponent* SceneComponent;
     UPROPERTY(VisibleAnywhere)
     class UStaticMeshComponent* StaticMeshComponent;
+    UPROPERTY(VisibleAnywhere)
+    class UNetComponent* m_pNetComponent;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb settings")
     float m_fEffectRadius;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb settings")
+    float m_fSlowDownFactor;
+
+    UPROPERTY(VisibleAnywhere)
+    class UDecalComponent* DecalComponent;
+
+protected:
+    TArray<ACar*> AffectedCars;
 };

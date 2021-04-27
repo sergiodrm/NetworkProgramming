@@ -8,7 +8,7 @@
 
 #include "Car.generated.h"
 
-class UBombComponent;
+class UBombSpawnerComponent;
 class UCarMovementComponent;
 class UInputNetComponent;
 
@@ -29,9 +29,11 @@ public:
 
     void SetInput(const FVector2D& _vInput) { m_vMovementInput = _vInput; }
 
+    UFUNCTION(BlueprintCallable)
     UInputNetComponent* GetNetComponent() const { return m_pNet; }
+
     UCarMovementComponent* GetCarMovement() const { return m_pCarMovement; }
-    UBombComponent* GetBombComponent() const { return m_pBombComponent; }
+    UBombSpawnerComponent* GetBombComponent() const { return m_pBombComponent; }
 
 protected:
     // Called when the game starts or when spawned
@@ -53,7 +55,7 @@ protected:
     UInputNetComponent* m_pNet;
     // Bomb
     UPROPERTY(EditAnywhere)
-    UBombComponent* m_pBombComponent;
+    UBombSpawnerComponent* m_pBombComponent;
 
     //Input variables
     FVector2D m_vMovementInput = FVector2D::ZeroVector;

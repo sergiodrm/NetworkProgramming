@@ -4,18 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "BombComponent.generated.h"
+#include "BombSpawnerComponent.generated.h"
 
 
 class ABomb;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class CARS_API UBombComponent : public UActorComponent
+class CARS_API UBombSpawnerComponent : public UActorComponent
 {
     GENERATED_BODY()
 
 public:
-    UBombComponent();
+    UBombSpawnerComponent();
 
     bool TrySpawnBomb();
     bool CanSpawnBomb() const;
@@ -25,6 +25,5 @@ protected:
     void SpawnBomb();
 
 public:
-
     ABomb* SpawnedBomb;
 };
