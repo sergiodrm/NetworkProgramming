@@ -33,8 +33,9 @@ ABomb::ABomb()
 
     DecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("Decal component"));
     DecalComponent->SetupAttachment(RootComponent);
-    DecalComponent->DecalSize = FVector(m_fEffectRadius, m_fEffectRadius, 20.f);
+    DecalComponent->DecalSize = FVector(m_fEffectRadius * 2.f, m_fEffectRadius * 2.f, m_fEffectRadius * 2.f);
     DecalComponent->FadeDuration = 0.f;
+    DecalComponent->AddLocalRotation(FRotator(90.f, 0.f, 0.f));
 
     const ConstructorHelpers::FObjectFinder<UMaterial> DecalMaterialObj(
         TEXT("Material'/Game/BombDecalMaterial.BombDecalMaterial'"));
@@ -48,15 +49,9 @@ void ABomb::BeginDestroy()
     Super::BeginDestroy();
 
     // We have to restore all cars velocity
-    TArray<AActor*> CarActors;
-    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACar::StaticClass(), CarActors);
-    for (AActor* Actor : CarActors)
+    for (ACar* car : AffectedCars)
     {
-        ACar* Car = Cast<ACar>(Actor);
-        if (Car)
-        {
-            Car->GetCarMovement()->RestoreVelocity();
-        }
+        car->GetCarMovement()->RestoreVelocity();
     }
 }
 
@@ -75,7 +70,11 @@ void ABomb::Tick(float DeltaSeconds)
             ACar* Car = Cast<ACar>(Actor);
             if (Car != OwnerCar)
             {
-                float squareDistance = (Actor->GetActorLocation() - GetActorLocation()).SizeSquared();
+                float squareDistance = (Car->GetActorLocation() - GetActorLocation()).SizeSquared();
+                float limit = m_fEffectRadius * m_fEffectRadius;
+                GEngine->AddOnScreenDebugMessage(INDEX_NONE, 0.2f, FColor::Green,
+                                                 FString::Printf(
+                                                     TEXT("Square distance: %.3f"), squareDistance / limit));
                 if (AffectedCars.Find(Car) != INDEX_NONE)
                 {
                     if (squareDistance > m_fEffectRadius * m_fEffectRadius)

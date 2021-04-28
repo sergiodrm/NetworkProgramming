@@ -28,11 +28,11 @@ void UInputNetComponent::DeserializeData(CGameBuffer& DataBuffer)
                     FTransform tTrans;
                     DataBuffer.read(tTrans);
                     GetOwner()->SetActorTransform(tTrans);
-                    float receivedVelocity;
-                    DataBuffer.read(receivedVelocity);
-
                     if (IsMyCar())
                     {
+                        float receivedVelocity;
+                        DataBuffer.read(receivedVelocity);
+
                         ACarsPlayerController* playerController = Cast<ACarsPlayerController>(
                             GetOwner()->GetWorld()->GetFirstPlayerController());
                         if (playerController)
