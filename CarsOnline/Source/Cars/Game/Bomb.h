@@ -22,10 +22,7 @@ public:
     virtual void Tick(float DeltaSeconds) override;
 
     void SetMaterialColor(const FLinearColor& BaseColor, const FLinearColor& EmissiveColor);
-
-protected:
-
-    virtual void BeginDestroy() override;
+    void OnDestroy();
 
 public:
 

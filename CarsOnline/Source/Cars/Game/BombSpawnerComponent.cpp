@@ -51,6 +51,7 @@ void UBombSpawnerComponent::DestroyBomb()
     {
         GEngine->AddOnScreenDebugMessage(INDEX_NONE, 3.f, FColor::Red, TEXT("Destroying bomb"));
 
+        SpawnedBomb->OnDestroy();
         SpawnedBomb->Destroy();
         SpawnedBomb = nullptr;
     }

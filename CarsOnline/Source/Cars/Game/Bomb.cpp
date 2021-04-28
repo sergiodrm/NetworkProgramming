@@ -44,21 +44,9 @@ ABomb::ABomb()
     m_pNetComponent = CreateDefaultSubobject<UNetComponent>(TEXT("Net component"));
 }
 
-void ABomb::BeginDestroy()
-{
-    Super::BeginDestroy();
-
-    // We have to restore all cars velocity
-    for (ACar* car : AffectedCars)
-    {
-        car->GetCarMovement()->RestoreVelocity();
-    }
-}
-
 void ABomb::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
-    DrawCircle(GetWorld(), GetActorLocation(), FVector::ZeroVector, FVector::ZeroVector, FColor::Red, 200.f, 20);
 
     // Slow down logic
     if (m_pNetComponent->IsServer())
@@ -71,10 +59,6 @@ void ABomb::Tick(float DeltaSeconds)
             if (Car != OwnerCar)
             {
                 float squareDistance = (Car->GetActorLocation() - GetActorLocation()).SizeSquared();
-                float limit = m_fEffectRadius * m_fEffectRadius;
-                GEngine->AddOnScreenDebugMessage(INDEX_NONE, 0.2f, FColor::Green,
-                                                 FString::Printf(
-                                                     TEXT("Square distance: %.3f"), squareDistance / limit));
                 if (AffectedCars.Find(Car) != INDEX_NONE)
                 {
                     if (squareDistance > m_fEffectRadius * m_fEffectRadius)
@@ -106,4 +90,16 @@ void ABomb::SetMaterialColor(const FLinearColor& BaseColor, const FLinearColor& 
         DecalComponent->GetMaterial(0), this);
     DecalMaterialInstance->SetVectorParameterValue(TEXT("BaseColor"), BaseColor);
     DecalComponent->SetMaterial(0, DecalMaterialInstance);
+}
+
+void ABomb::OnDestroy()
+{
+    if (m_pNetComponent->IsServer())
+    {
+        // We have to restore all cars velocity
+        for (ACar* car : AffectedCars)
+        {
+            car->GetCarMovement()->RestoreVelocity();
+        }
+    }
 }
